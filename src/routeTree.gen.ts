@@ -10,7 +10,9 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as KnowledgeRouteImport } from './routes/knowledge'
+import { Route as IncidentsRouteImport } from './routes/incidents'
 import { Route as DbCopilotRouteImport } from './routes/db-copilot'
+import { Route as AutomationsRouteImport } from './routes/automations'
 import { Route as IndexRouteImport } from './routes/index'
 
 const KnowledgeRoute = KnowledgeRouteImport.update({
@@ -18,9 +20,19 @@ const KnowledgeRoute = KnowledgeRouteImport.update({
   path: '/knowledge',
   getParentRoute: () => rootRouteImport,
 } as any)
+const IncidentsRoute = IncidentsRouteImport.update({
+  id: '/incidents',
+  path: '/incidents',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DbCopilotRoute = DbCopilotRouteImport.update({
   id: '/db-copilot',
   path: '/db-copilot',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AutomationsRoute = AutomationsRouteImport.update({
+  id: '/automations',
+  path: '/automations',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -31,31 +43,45 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/automations': typeof AutomationsRoute
   '/db-copilot': typeof DbCopilotRoute
+  '/incidents': typeof IncidentsRoute
   '/knowledge': typeof KnowledgeRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/automations': typeof AutomationsRoute
   '/db-copilot': typeof DbCopilotRoute
+  '/incidents': typeof IncidentsRoute
   '/knowledge': typeof KnowledgeRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/automations': typeof AutomationsRoute
   '/db-copilot': typeof DbCopilotRoute
+  '/incidents': typeof IncidentsRoute
   '/knowledge': typeof KnowledgeRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/db-copilot' | '/knowledge'
+  fullPaths: '/' | '/automations' | '/db-copilot' | '/incidents' | '/knowledge'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/db-copilot' | '/knowledge'
-  id: '__root__' | '/' | '/db-copilot' | '/knowledge'
+  to: '/' | '/automations' | '/db-copilot' | '/incidents' | '/knowledge'
+  id:
+    | '__root__'
+    | '/'
+    | '/automations'
+    | '/db-copilot'
+    | '/incidents'
+    | '/knowledge'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AutomationsRoute: typeof AutomationsRoute
   DbCopilotRoute: typeof DbCopilotRoute
+  IncidentsRoute: typeof IncidentsRoute
   KnowledgeRoute: typeof KnowledgeRoute
 }
 
@@ -68,11 +94,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof KnowledgeRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/incidents': {
+      id: '/incidents'
+      path: '/incidents'
+      fullPath: '/incidents'
+      preLoaderRoute: typeof IncidentsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/db-copilot': {
       id: '/db-copilot'
       path: '/db-copilot'
       fullPath: '/db-copilot'
       preLoaderRoute: typeof DbCopilotRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/automations': {
+      id: '/automations'
+      path: '/automations'
+      fullPath: '/automations'
+      preLoaderRoute: typeof AutomationsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -87,7 +127,9 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AutomationsRoute: AutomationsRoute,
   DbCopilotRoute: DbCopilotRoute,
+  IncidentsRoute: IncidentsRoute,
   KnowledgeRoute: KnowledgeRoute,
 }
 export const routeTree = rootRouteImport

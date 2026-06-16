@@ -1,14 +1,14 @@
 import type { Alert } from "../types";
 
 export const recentAlerts: Alert[] = [
-  { id: "a1", severity: "critical", description: "Replication lag > 30s em postgres-primary-02", service: "postgres-cluster", downtime: "00:04:12", timestamp: "há 3 min" },
-  { id: "a2", severity: "critical", description: "Connection pool exhausted (PgBouncer)", service: "pgbouncer-edge", downtime: "00:02:48", timestamp: "há 8 min" },
-  { id: "a3", severity: "warning", description: "CPU sustained > 85% por 10 min", service: "api-gateway-eu", downtime: "—", timestamp: "há 14 min" },
-  { id: "a4", severity: "warning", description: "Disk IOPS aproximando do limite provisionado", service: "rds-orders-prod", downtime: "—", timestamp: "há 22 min" },
-  { id: "a5", severity: "info", description: "Deploy v2.41.0 concluído em checkout-service", service: "checkout-service", downtime: "—", timestamp: "há 37 min" },
-  { id: "a6", severity: "critical", description: "Kafka consumer lag > 50k mensagens", service: "orders-consumer", downtime: "00:11:03", timestamp: "há 41 min" },
-  { id: "a7", severity: "warning", description: "TLS cert expira em 9 dias (*.api.internal)", service: "ingress-nginx", downtime: "—", timestamp: "há 1 h" },
-  { id: "a8", severity: "info", description: "Auto-scaling event: +3 nodes em eks-prod-eu", service: "eks-prod-eu", downtime: "—", timestamp: "há 2 h" },
+  { id: "a1", severity: "critical", description: "Replication lag > 30s em postgres-primary-02", service: "postgres-cluster", downtime: "00:04:12", timestamp: new Date(Date.now() - 3 * 60 * 1000).toISOString(), assignee: "DBA Team", tags: ["database", "replication"] },
+  { id: "a2", severity: "critical", description: "Connection pool exhausted (PgBouncer)", service: "pgbouncer-edge", downtime: "00:02:48", timestamp: new Date(Date.now() - 8 * 60 * 1000).toISOString(), assignee: "Backend Team", tags: ["database", "connections"] },
+  { id: "a3", severity: "warning", description: "CPU sustained > 85% por 10 min", service: "api-gateway-eu", downtime: "—", timestamp: new Date(Date.now() - 14 * 60 * 1000).toISOString(), tags: ["performance", "cpu"] },
+  { id: "a4", severity: "warning", description: "Disk IOPS aproximando do limite provisionado", service: "rds-orders-prod", downtime: "—", timestamp: new Date(Date.now() - 22 * 60 * 1000).toISOString(), assignee: "Infrastructure", tags: ["storage", "iops"] },
+  { id: "a5", severity: "info", description: "Deploy v2.41.0 concluído em checkout-service", service: "checkout-service", downtime: "—", timestamp: new Date(Date.now() - 37 * 60 * 1000).toISOString(), tags: ["deployment"] },
+  { id: "a6", severity: "critical", description: "Kafka consumer lag > 50k mensagens", service: "orders-consumer", downtime: "00:11:03", timestamp: new Date(Date.now() - 41 * 60 * 1000).toISOString(), assignee: "Backend Team", tags: ["messaging", "lag"] },
+  { id: "a7", severity: "warning", description: "TLS cert expira em 9 dias (*.api.internal)", service: "ingress-nginx", downtime: "—", timestamp: new Date(Date.now() - 60 * 60 * 1000).toISOString(), assignee: "Security Team", tags: ["ssl", "security"] },
+  { id: "a8", severity: "info", description: "Auto-scaling event: +3 nodes em eks-prod-eu", service: "eks-prod-eu", downtime: "—", timestamp: new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString(), tags: ["kubernetes", "scaling"] },
 ];
 
 export const alertsVolume = [

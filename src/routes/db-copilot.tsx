@@ -26,12 +26,12 @@ function DbCopilotPage() {
       subtitle="Assistente de IA para análise, tuning e rollback de queries"
     >
       <div className="h-[calc(100svh-3.5rem)]">
-        <ResizablePanelGroup direction="horizontal" className="h-full">
-          <ResizablePanel defaultSize={42} minSize={30}>
+        <ResizablePanelGroup orientation="horizontal" className="h-full">
+          <ResizablePanel id="chat" defaultSize={42} minSize={30}>
             <ChatPanel />
           </ResizablePanel>
           <ResizableHandle withHandle />
-          <ResizablePanel defaultSize={58} minSize={35}>
+          <ResizablePanel id="code" defaultSize={58} minSize={35}>
             <CodePanel />
           </ResizablePanel>
         </ResizablePanelGroup>
